@@ -17,7 +17,9 @@ def get_weather_data(city):
     try:
         response = requests.get(BASE_URL, params=params)
         response.raise_for_status()  # Raise an exception for bad responses
-        return response.json()
+        data = response.json()
+        data['weather'][0]['icon_url'] = f"http://openweathermap.org/img/wn/{data['weather'][0]['icon']}@2x.png"
+        return data
     except requests.RequestException as e:
         print(f"Error fetching weather data: {e}")
         return None
@@ -53,7 +55,8 @@ def process_forecast_data(data):
         forecast_data.append({
             'Date': item['dt_txt'],
             'Temperature': item['main']['temp'],
-            'Description': item['weather'][0]['description'].capitalize()
+            'Description': item['weather'][0]['description'].capitalize(),
+            'Icon': f"http://openweathermap.org/img/wn/{item['weather'][0]['icon']}@2x.png"
         })
     
     return forecast_data
