@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Replit
+.replit
+replit.nix
+poetry.lock
+.upm/
+
+# Miscellaneous
+.DS_Store
+.idea/
+.vscode/
